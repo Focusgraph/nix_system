@@ -4,21 +4,55 @@
     imports = [
         ./hardware-configuration.nix
     ];
-
-    i18n.extraLocales = [ "es_ES.UTF-8/UTF-8" ]; # Need to test if useful
+    i18n.defaultLocale = "en_US.UTF-8";
+    i18n.extraLocales = [ "es_ES.UTF-8/UTF-8" ];
+    i18n.extraLocaleSettings = {
+        LC_ADDRESS = "es_ES.UTF-8";
+        LC_MEASUREMENT = "es_ES.UTF-8";
+        LC_MONETARY = "es_ES.UTF-8";
+        LC_NAME = "es_ES.UTF-8";
+        LC_NUMERIC = "es_ES.UTF-8";
+        LC_PAPER = "es_ES.UTF-8";
+        LC_TELEPHONE = "es_ES.UTF-8";
+        LC_TIME = "es_ES.UTF-8";
+    };
 
     environment.systemPackages = with pkgs; [
         btop
         fastfetch
         git
         neovim
+	      noto-fonts
+	      noto-fonts-color-emoji
+	      noto-fonts-monochrome-emoji
+	      noto-fonts-cjk-sans
         nil
         nvd
         feishin
         firefox
-        kitty
-        qbittorrent
-        kdePackages.filelight
+	      kdePackages.kate
+	      gnomeExtensions.night-theme-switcher
+
+        # LazyVim setup
+	      vimPlugins.LazyVim
+        python3
+        luajitPackages.luarocks
+        lua51Packages.lua
+        ripgrep
+        fd
+        lazygit
+        fzf
+        libgcc
+        unzip
+        wget
+        ghostty
+        imagemagick
+        git-spice
+        tectonic
+        mermaid-cli
+        sqlite
+#        kdePackages.yakuake
+#        kdePackages.filelight
     ];
 
     # --Filesystem--
@@ -56,7 +90,7 @@
 
     services = {
         desktopManager.plasma6.enable = true;
-        displayManager.sddm = { enable = true; wayland.enable = true; };
+        displayManager.sddm.enable = true;
         tailscale.enable = true;
         fprintd.enable = true;
 
@@ -75,6 +109,12 @@
     };
 
     programs = {
+	neovim = {
+	    enable = true;
+	    defaultEditor = true;
+	    viAlias = true;
+	    vimAlias = true;
+	};
     	ssh = {
             startAgent = true;
             extraConfig = "
@@ -98,7 +138,7 @@
         };
         bash.shellAliases = {
             updiff = "nixos-rebuild build --upgrade --sudo && nvd diff /run/current-system result";
-            gc = "sudo nix-collect-garbage --delete-older-than 1d && nix-collect-garbage --delete-older-than 1d";
+            gc = "sudo nix-collect-garbage --delete-older-than 7d && nix-collect-garbage --delete-older-than 1d";
         };
     };
 
