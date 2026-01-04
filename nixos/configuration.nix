@@ -37,7 +37,7 @@
         fd
         lazygit
         fzf
-        libgcc
+        gcc
         unzip
         wget
         ghostty
