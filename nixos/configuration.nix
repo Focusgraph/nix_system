@@ -6,6 +6,11 @@
     ];
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix.gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 7d";
+      };
 
     i18n.defaultLocale = "en_US.UTF-8";
 
@@ -134,7 +139,7 @@
         };
         bash.shellAliases = {
             updiff = "nixos-rebuild build --upgrade --sudo && nvd diff /run/current-system result";
-            gc = "sudo nix-collect-garbage --delete-older-than 7d && nix-collect-garbage --delete-older-than 1d";
+            gc = "sudo nix-collect-garbage --delete-older-than 7d && nix-collect-garbage --delete-older-than 7d";
         };
     };
 
