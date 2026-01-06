@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
     imports = [
@@ -64,7 +64,8 @@
         };
         bash.shellAliases = {
             updiff = "nixos-rebuild build --upgrade --sudo && nvd diff /run/current-system result";
-            gc = "sudo nix-collect-garbage --delete-older-than 7d && nix-collect-garbage --delete-older-than 7d";
+            switch = "nixos-rebuild switch --sudo";
+            please = "sudo !!";
         };
     };
 

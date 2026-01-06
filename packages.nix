@@ -18,7 +18,8 @@
     noto-fonts
     noto-fonts-monochrome-emoji
     noto-fonts-cjk-sans
-    # Shell
+    # Terminal
+    ghostty
     starship
     fzf
     # Other
