@@ -1,56 +1,62 @@
 { pkgs, ... }:
 
 {
-    imports = [
-        ./hardware-configuration.nix
-        ./boot.nix
-        ./dev.nix
-        ./network.nix
-        ./packages.nix
-        ./flatpak.nix
-        ./misc.nix
+  imports = [
+    ./hardware-configuration.nix
+    ./boot.nix
+    ./dev.nix
+    ./network.nix
+    ./packages.nix
+    ./flatpak.nix
+    ./misc.nix
+  ];
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  nix.settings.auto-optimise-store = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
+  users.users.nixy = {
+    isNormalUser = true;
+    home = "/home/nixy";
+    extraGroups = [
+      "wheel"
+      "gamemode"
     ];
+  };
 
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
-    nix.settings.auto-optimise-store = true;
-    nix.gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 7d";
+  services = {
+    desktopManager.plasma6.enable = true;
+    displayManager.sddm.enable = true;
+    tailscale.enable = true;
+    fprintd.enable = true;
+  };
+
+  programs = {
+    neovim = {
+      configure = {
+        packages.all.start = with pkgs.vimPlugins; [
+          nvim-treesitter.withAllGrammars
+        ];
       };
-
-    users.users.nixy = {
-            isNormalUser = true;
-            home = "/home/nixy";
-            extraGroups = [ "wheel" "gamemode" ];
     };
-
-    services = {
-        desktopManager.plasma6.enable = true;
-        displayManager.sddm.enable = true;
-        tailscale.enable = true;
-        fprintd.enable = true;
+    gamemode.enable = true;
+    starship.enable = true;
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      viAlias = true;
+      vimAlias = true;
     };
-
-    programs = {
-        neovim = {
-            configure = {
-                packages.all.start = with pkgs.vimPlugins; [
-                    nvim-treesitter.withAllGrammars
-                ];
-            };
-        };
-        gamemode.enable = true;
-        starship.enable = true;
-        neovim = {
-            enable = true;
-            defaultEditor = true;
-            viAlias = true;
-            vimAlias = true;
-        };
-        ssh = {
-            startAgent = true;
-            extraConfig = "
+    ssh = {
+      startAgent = true;
+      extraConfig = "
             Host btarch
                 Hostname 192.168.18.8
                 Port 22
@@ -65,17 +71,19 @@
                 User git
                 IdentityFile /home/nixy/.ssh/codeberg
             ";
-        };
-        firefox = {
-            enable = true;
-            preferences = { "widget.use-xdg-desktop-portal.file-picker" = 1; };
-        };
-        bash.shellAliases = {
-            build = "pushd ~/nixos && nix flake update && nixos-rebuild build && nvd diff /run/current-system result && popd";
-            switch = "nixos-rebuild switch --sudo";
-            please = "sudo !!";
-        };
     };
+    firefox = {
+      enable = true;
+      preferences = {
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
+      };
+    };
+    bash.shellAliases = {
+      build = "pushd ~/nixos && nix flake update && nixos-rebuild build && nvd diff /run/current-system result && popd";
+      switch = "nixos-rebuild switch --sudo";
+      please = "sudo !!";
+    };
+  };
 
-    system.stateVersion = "25.11";
+  system.stateVersion = "25.11";
 }

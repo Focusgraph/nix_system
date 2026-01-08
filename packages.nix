@@ -30,6 +30,10 @@
     # Code editors
     neovim
     kdePackages.kate
+    kdePackages.kdevelop
+    zed-editor
+    package-version-server
+    jetbrains.idea-oss
   ];
 
 }

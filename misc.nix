@@ -1,8 +1,8 @@
-{ pkgs, config,  ... }:
+{ ... }:
 {
-    i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
 
-    time.timeZone = "Europe/Madrid";
+  time.timeZone = "Europe/Madrid";
 
-    console.keyMap = "colemak";
+  console.keyMap = "colemak";
 }
