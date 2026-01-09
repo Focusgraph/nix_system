@@ -23,6 +23,8 @@
     feishin
     motrix
     cava
+    haruna
+    handbrake
     # Code editors
     neovim
     kdePackages.kate
