@@ -22,7 +22,6 @@
     git
     feishin
     motrix
-    cava
     haruna
     handbrake
     # Code editors

@@ -1,10 +1,14 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   home.stateVersion = "25.11"; # Please read the comment before changing.
 
   home.username = "nixy";
   home.homeDirectory = "/home/nixy";
+
+  home.sessionPath = [
+    "$HOME/bash_scripts"
+  ];
 
   home.packages = [
     # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
