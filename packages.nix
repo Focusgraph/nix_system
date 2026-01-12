@@ -27,7 +27,7 @@
     # Code editors
     neovim
     kdePackages.kate
-    zed-editor
+    #zed-editor
     package-version-server
   ];
 

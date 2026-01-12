@@ -1,22 +1,27 @@
 {
-    fileSystems = {
-        "/".options = [ "compress=zstd"];
-    };
+  fileSystems = {
+    "/".options = [ "compress=zstd" ];
+  };
 
-    services.btrfs.autoScrub = {
-        enable = true;
-        fileSystems = [ "/" ];
-    };
+  services.btrfs.autoScrub = {
+    enable = true;
+    fileSystems = [ "/" ];
+  };
 
-    services.beesd.filesystems.root = {
-        spec = "LABEL=nixos";
-        hashTableSizeMB = 512;
-        verbosity = "info";
-        extraOptions = [ "--loadavg-target" "5.0" ];
-    };
+  services.beesd.filesystems.root = {
+    spec = "LABEL=nixos";
+    hashTableSizeMB = 512;
+    verbosity = "info";
+    extraOptions = [
+      "--loadavg-target"
+      "5.0"
+    ];
+  };
 
-    swapDevices = [{
-        device = "/var/lib/swapfile";
-        size = 6*1024;
-    }];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 12 * 1024;
+    }
+  ];
 }
