@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   home.stateVersion = "25.11"; # Please read the comment before changing.

@@ -28,8 +28,8 @@
     neovim
     helix
     kdePackages.kate
-    #zed-editor
-    #package-version-server
+    zed-editor
+    package-version-server
   ];
 
   fonts.enableDefaultPackages = true;
