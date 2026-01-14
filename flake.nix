@@ -8,7 +8,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nix-flatpak, home-manager }:
+  outputs =
+  { self, nixpkgs, nix-flatpak, home-manager }:
   {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";

@@ -22,6 +22,8 @@
     options = "--delete-older-than 7d";
   };
 
+  i18n.defaultLocale = "en_US.UTF-8";
+  
   users.users.nixy = {
     isNormalUser = true;
     home = "/home/nixy";
@@ -31,10 +33,19 @@
     ];
   };
 
+  environment.variables = {
+    PATH = "\${PATH}:/home/nixy/bash_scripts";
+  };
+
+  powerManagement.powertop.enable = true;
+
+  security.rtkit.enable = true;
+  
   services = {
     desktopManager.plasma6.enable = true;
     displayManager.sddm.enable = true;
     tailscale.enable = true;
+    tailscale.disableUpstreamLogging = true;
     fprintd.enable = true;
   };
 
