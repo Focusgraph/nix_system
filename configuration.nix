@@ -9,6 +9,7 @@
     ./packages.nix
     ./flatpak.nix
     ./misc.nix
+    ./services/syncthing.nix
   ];
 
   nix.settings.experimental-features = [
@@ -46,13 +47,6 @@
     displayManager.sddm.enable = true;
     tailscale.enable = true;
     tailscale.disableUpstreamLogging = true;
-    syncthing.enable = true;
-    syncthing.settings = {
-      gui = {
-        user = "nixy";
-        password = "126436";
-      };
-    };
     fprintd.enable = true;
   };
 
