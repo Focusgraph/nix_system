@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   boot = {
@@ -37,7 +37,7 @@
   };
 
   environment.variables = {
-    PATH = "\${PATH}:/home/nixy/bash_scripts:/home/nixy/synclone";
+    PATH = "\${PATH}:/home/nixy/.local/bin:/home/nixy/bash_scripts:/home/nixy/synclone";
   };
 
   users.users.nixy = {
@@ -58,37 +58,39 @@
     ];
   };
 
-  environment.systemPackages = with pkgs; [
-    btop
+  environment.systemPackages = [
+    # Gnome
+    pkgs.gnomeExtensions.night-theme-switcher
+    pkgs.gnome-tweaks
+    # Monitoring
+    pkgs.btop
     # Nix
-    nil
-    nvd
+    pkgs.nil
+    pkgs.nvd
     # Gaming
-    lutris-free
-    wineWow64Packages.staging
-    winetricks
-    mangohud
+    pkgs.lutris-free
+    pkgs.wineWow64Packages.staging
+    pkgs.winetricks
+    pkgs.mangohud
+    pkgs.moonlight-qt
     # Web browsers
-    firefox
-    ladybird
-    ungoogled-chromium
+    pkgs.firefox
+    pkgs.ladybird
+    # inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".default
     # Terminal
-    starship
-    fzf
+    pkgs.starship
+    pkgs.fzf
     # Media
-    feishin
-    kdePackages.elisa
-    haruna
+    pkgs.feishin
+    pkgs.blanket
     # Tools
-    git
-    keepassxc
-    kdePackages.filelight
-    appimage-run
+    pkgs.git
+    pkgs.keepassxc
+    pkgs.appimage-run
     # Code editors
-    helix
-    kdePackages.kate
-    zed-editor
-    package-version-server
+    pkgs.helix
+    pkgs.zed-editor
+    pkgs.package-version-server
   ];
 
   imports = [
@@ -111,8 +113,10 @@
   };
 
   services = {
-    desktopManager.plasma6.enable = true;
-    displayManager.sddm.enable = true;
+    # desktopManager.plasma6.enable = true;
+    # displayManager.sddm.enable = true;
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
     tailscale.enable = true;
     tailscale.disableUpstreamLogging = true;
     fprintd.enable = true;
@@ -165,7 +169,7 @@
     gamemode.enable = true;
     starship.enable = true;
     ssh = {
-      startAgent = true;
+      # startAgent = true;
       extraConfig = "
             Host licher
                 Hostname 192.168.18.8
