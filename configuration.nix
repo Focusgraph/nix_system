@@ -1,4 +1,9 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   boot = {
@@ -20,6 +25,8 @@
   ];
   fileSystems."/".options = [ "compress=zstd" ];
   i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocales = "all";
+  environment.sessionVariables.LANG = lib.mkForce null; # Should fix locales not appearing
   console.keyMap = "colemak";
   time.timeZone = "Europe/Madrid";
   powerManagement.powertop.enable = true;
@@ -27,12 +34,12 @@
   hardware.bluetooth.enable = true;
 
   networking = {
-    hostName = "nixos";
+    hostName = "vega";
     networkmanager.enable = true;
     networkmanager.wifi.powersave = true;
     networkmanager.dns = "none";
     nameservers = [
-      "194.242.2.3"
+      "194.242.2.3" # Mullvad DNS
     ];
   };
 
@@ -58,9 +65,25 @@
     ];
   };
 
+  environment.gnome.excludePackages = [
+    pkgs.epiphany
+    pkgs.gnome-text-editor
+    pkgs.gnome-characters
+    pkgs.gnome-contacts
+    pkgs.gnome-font-viewer
+    pkgs.gnome-maps
+    pkgs.gnome-music
+    pkgs.gnome-system-monitor
+    pkgs.gnome-weather
+    pkgs.gnome-connections
+    pkgs.simple-scan
+    pkgs.yelp
+  ];
+
   environment.systemPackages = [
     # Gnome
     pkgs.gnomeExtensions.night-theme-switcher
+    pkgs.gnomeExtensions.appindicator
     pkgs.gnome-tweaks
     # Monitoring
     pkgs.btop
@@ -87,6 +110,7 @@
     pkgs.git
     pkgs.keepassxc
     pkgs.appimage-run
+    pkgs.libimobiledevice
     # Code editors
     pkgs.helix
     pkgs.zed-editor
@@ -112,6 +136,12 @@
     };
   };
 
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
+  };
+
   services = {
     # desktopManager.plasma6.enable = true;
     # displayManager.sddm.enable = true;
@@ -120,6 +150,7 @@
     tailscale.enable = true;
     tailscale.disableUpstreamLogging = true;
     fprintd.enable = true;
+    usbmuxd.enable = true;
     btrfs.autoScrub = {
       enable = true;
       fileSystems = [ "/" ];
@@ -174,7 +205,7 @@
             Host licher
                 Hostname 192.168.18.8
                 Port 22
-                User lich
+                User nixy
                 IdentityFile /home/nixy/.ssh/licher
             Host tslicher
                 Hostname 100.70.166.15
@@ -195,6 +226,19 @@
       bswitch = "build && switch";
       please = "sudo !!";
     };
+    dconf.profiles.user.databases = [
+      {
+        settings = {
+          "org/gnome/mutter" = {
+            experimental-features = [
+              "variable-refresh-rate"
+              "xwayland-native-scaling"
+              "autoclose-xwayland"
+            ];
+          };
+        };
+      }
+    ];
     firefox = {
       enable = true;
       preferences = {
