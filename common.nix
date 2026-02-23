@@ -12,7 +12,7 @@
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
-  fileSystems."/".options = [ "compress=zstd" ];
+  fileSystems."/".options = [ "compress=zstd" ]; # Btrfs filesystems
 
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocales = "all";
@@ -43,9 +43,9 @@
   };
 
   programs.bash.shellAliases = {
-    build = "pushd ~/nixos && nix flake update && nixos-rebuild build && nvd diff /run/current-system result && popd";
+    gupdate = "pushd ~/nixos && nix flake update && nixos-rebuild build && nvd diff /run/current-system result && popd";
     switch = "nixos-rebuild switch --sudo";
-    bswitch = "build && switch";
+    update = "get-updates && switch";
     please = "sudo !!";
   };
 

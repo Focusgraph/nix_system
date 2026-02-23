@@ -7,6 +7,7 @@
 {
   imports = [
     ../../common.nix
+    ../../packages.nix
     ./hardware-configuration.nix
   ];
 
@@ -70,30 +71,20 @@
     pkgs.gnomeExtensions.night-theme-switcher
     pkgs.gnomeExtensions.appindicator
     pkgs.gnome-tweaks
-    # Monitoring
-    pkgs.btop
-    # Nix
-    pkgs.nil
-    pkgs.nvd
     # Gaming
     pkgs.moonlight-qt
     # Web browsers
     pkgs.ladybird
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-    # Terminal
-    pkgs.starship
-    pkgs.fzf
     # Media
     pkgs.feishin
     pkgs.blanket
     # Tools
-    pkgs.git
     pkgs.keepassxc
     pkgs.appimage-run
     pkgs.libimobiledevice
     pkgs.distrobox
     # Code editors
-    pkgs.helix
     pkgs.zed-editor
     pkgs.package-version-server
   ];
