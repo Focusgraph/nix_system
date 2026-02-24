@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }:
 
@@ -45,7 +44,7 @@
   programs.bash.shellAliases = {
     gupdate = "pushd ~/nixos && nix flake update && nixos-rebuild build && nvd diff /run/current-system result && popd";
     switch = "nixos-rebuild switch --sudo";
-    update = "get-updates && switch";
+    update = "gupdate && switch";
     please = "sudo !!";
   };
 

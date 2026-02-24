@@ -1,6 +1,7 @@
 {
   inputs,
   pkgs,
+  config,
   ...
 }:
 
@@ -99,8 +100,13 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
     fwupd.enable = true;
-    tailscale.enable = true;
-    tailscale.disableUpstreamLogging = true;
+    tailscale = {
+      enable = true;
+      disableUpstreamLogging = true;
+      extraSetFlags = [
+        "--accept-routes"
+      ];
+    };
     fprintd.enable = true;
     usbmuxd.enable = true;
     qemuGuest.enable = true;
@@ -128,7 +134,7 @@
       user = "nixy";
       dataDir = "/home/nixy";
       configDir = "/home/nixy/.config/syncthing";
-      guiPasswordFile = "/home/nixy/syncthing_gui_password.txt";
+      guiPasswordFile = config.sops.secrets."nixy_password".path;
       settings = {
         gui.user = "nixy";
         devices = {
@@ -139,10 +145,6 @@
         folders = {
           "Keepass" = {
             path = "/home/nixy/Keepass";
-            devices = [ "pixel6" ];
-          };
-          "Share" = {
-            path = "/home/nixy/Share";
             devices = [ "pixel6" ];
           };
         };
@@ -174,12 +176,6 @@
                 User git
                 IdentityFile /home/nixy/.ssh/github
             ";
-    };
-    bash.shellAliases = {
-      build = "pushd ~/nixos && nix flake update && nixos-rebuild build && nvd diff /run/current-system result && popd";
-      switch = "nixos-rebuild switch --sudo";
-      bswitch = "build && switch";
-      please = "sudo !!";
     };
   };
   system.stateVersion = "25.11";
