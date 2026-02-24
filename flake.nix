@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -18,6 +19,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     nix-flatpak,
     nix-index-database,
     zen-browser,
@@ -25,9 +27,7 @@
   } @ inputs:
   {
     nixosConfigurations.vega = nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs;
-      };
+      specialArgs = { inherit inputs; };
       modules = [
         ./machines/vega/configuration.nix
         nix-flatpak.nixosModules.nix-flatpak
@@ -36,6 +36,7 @@
       ];
     };
     nixosConfigurations.licher = nixpkgs.lib.nixosSystem {
+      specialArgs = { inherit inputs; };
       modules = [
         ./machines/licher/configuration.nix
         sops-nix.nixosModules.default

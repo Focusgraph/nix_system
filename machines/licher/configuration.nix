@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgsUnstable, ... }:
 {
   imports = [
     ../../common.nix
@@ -25,7 +25,7 @@
     pkgs.jellyfin
     pkgs.jellyfin-web
     pkgs.jellyfin-ffmpeg
-    pkgs.lutris-free
+    pkgsUnstable.lutris-free
     pkgs.mangohud
     pkgs.wineWow64Packages.staging
     pkgs.winetricks
