@@ -87,8 +87,54 @@
     };
     glance = {
       enable = true;
-      settings.server.port = 5050;
-      settings.server.host = "0.0.0.0";
+      settings = {
+        server = {
+          port = 5050;
+          host = "0.0.0.0";
+          proxied = true;
+        };
+        branding = {
+          custom-footer = ''<p>Powered by <a href="https://github.com/glanceapp/glance">Glance</a></p>'';
+        };
+        theme = {
+          background-color = "0 0 16";
+          primary-color = "43 59 81";
+          positive-color = "61 66 44";
+          negative-color = "6 96 59";
+          contrast-multiplier = 1.3;
+          disable-picker = true;
+        };
+        pages = [{
+          name = "Services";
+          show-mobile-header = true;
+          columns = [
+          {
+            size = "small";
+            widgets = [
+            {
+              type = "calendar";
+            }
+            {
+              type = "weather";
+              location = "Marbella, Spain";
+            }
+            ];
+          }
+          {
+            size = "full";
+            widgets = [{
+              type = "hacker-news";
+              limit = 15;
+              collapse-after = 5;
+              # feeds = [{
+              #   url = "https://feeds.bloomberg.com/markets/news.rss";
+              #   title = "Bloomberg";
+              # }];
+            }];
+          }
+          ];
+        }];
+      };
     };
     sunshine = {
       enable = true;
@@ -98,6 +144,7 @@
     };
     redlib.enable = true; 
     jellyfin.enable = true;
+    actual.enable = true;
   };
   system.stateVersion = "25.11";
 }
