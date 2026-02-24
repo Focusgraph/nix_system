@@ -41,13 +41,20 @@
     hashedPasswordFile = config.sops.secrets."nixy_password".path;
   };
 
-  programs.bash.shellAliases = {
-    gupdate = "pushd ~/nixos && nix flake update && nixos-rebuild build && nvd diff /run/current-system result && popd";
-    switch = "nixos-rebuild switch --sudo";
-    update = "gupdate && switch";
-    please = "sudo !!";
+  programs.bash = {
+    shellAliases = {
+      gupdate = "pushd ~/nixos && nix flake update && nixos-rebuild build && nvd diff /run/current-system result && popd";
+      switch = "nixos-rebuild switch --sudo";
+      update = "gupdate && switch";
+    };
+    promptInit =
+    ''
+      eval "$(fzf --bash)"
+      function pkgv {
+        realpath $(which $1)
+      }
+    ''; # This is equivalent to .bashrc
   };
-
   fonts = {
     enableDefaultPackages = true;
     fontconfig.useEmbeddedBitmaps = true;
