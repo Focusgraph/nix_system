@@ -66,6 +66,7 @@ in
     ''; # Fix input for sunshine
 
     openssh.enable = true;
+    openssh.openFirewall = false;
     tailscale = {
       enable = true;
       disableUpstreamLogging = true;
