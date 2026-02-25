@@ -160,13 +160,8 @@
       # startAgent = true;
       extraConfig = "
             Host licher
-                Hostname 192.168.18.8
-                Port 22
-                User nixy
-                IdentityFile /home/nixy/.ssh/licher
-            Host tslicher
                 Hostname 100.70.166.15
-                User lich
+                User nixy
             Host codeberg.org
                 Hostname codeberg.org
                 User git
