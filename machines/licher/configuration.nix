@@ -1,4 +1,4 @@
-{ pkgs, pkgsUnstable, ... }:
+{ pkgs, config, pkgsUnstable, ... }:
 let
   subreddits = [
     "NixOS"
@@ -101,6 +101,21 @@ in
         extraOptions = [ "--loadavg-target" "5.0" ];
       };
     };
+    # webdav = {
+    #   enable = true;
+    #   settings = {
+    #     address = "0.0.0.0";
+    #     port = 6565;
+    #     directory = "/storage/public";
+    #     permissions = "RC";
+    #     users = [
+    #       {
+    #         username = "nixy";
+    #         password = "1234";
+    #       }
+    #     ];
+    #   };
+    # };
     glance = {
       enable = true;
       settings = {
@@ -138,29 +153,30 @@ in
               timeout = "1m";
               sites = [
                 {
-                  title = "Jellyfin";
-                  url = "https://jellyfin.sole-alkaid.ts.net";
-                  check-url = "http://localhost:8096";
-                  icon = "di:jellyfin";
+                title = "Jellyfin";
+                url = "https://jellyfin.sole-alkaid.ts.net";
+                check-url = "http://localhost:8096";
+                icon = "di:jellyfin";
                 }
                 {
-                  title = "Actual Budget";
-                  url = "https://actual.sole-alkaid.ts.net";
-                  check-url = "http://localhost:3000";
+                title = "Actual Budget";
+                url = "https://actual.sole-alkaid.ts.net";
+                check-url = "http://localhost:3000";
+                icon = "di:actual-budget";
                 }
                 {
-                  title = "Redlib";
-                  url = "https://redlib.sole-alkaid.ts.net";
-                  check-url = "http://localhost:8080";
-                  icon = "di:redlib";
+                title = "Redlib";
+                url = "https://redlib.sole-alkaid.ts.net";
+                check-url = "http://localhost:8080";
+                icon = "di:redlib";
                 }];
               }
               {
               type = "server-stats";
               servers = [
                 {
-                  type = "local";
-                  name = "Licher";
+                type = "local";
+                name = "Licher";
                 }];   
               }];
             }
@@ -175,7 +191,15 @@ in
                 title = "Youtube";
                 shortcut = "!yt";
                 url = "https://www.youtube.com/results?search_query={QUERY}";
+                }
+                {
+                title = "Reddit";
+                shortcut = "!rd";
+                url = "https://redlib.sole-alkaid.ts.net/search?q={QUERY}";
                 }];
+              }
+              {
+              type = "to-do";
               }
               {
               type = "hacker-news";
@@ -201,7 +225,7 @@ in
       package = pkgsUnstable.redlib;
       address = "127.0.0.1";
       settings = {
-        REDLIB_SFW_ONLY = "on";
+        REDLIB_SFW_ONLY = "off";
         REDLIB_DEFAULT_THEME = "nord";
         REDLIB_DEFAULT_POST_SORT = "new";
         REDLIB_DEFAULT_COMMENT_SORT = "old";
@@ -211,6 +235,14 @@ in
         REDLIB_DEFAULT_SUBSCRIPTIONS = builtins.concatStringsSep "+" subreddits;
       };
     };
+    # invidious = {
+    #   enable = true;
+    #   sig-helper.enable = true;
+    #   port = 2560;
+    #   address = "127.0.0.1";
+    #   settings = {
+    #   };
+    # };
     jellyfin.enable = true;
     actual.enable = true;
   };
