@@ -126,6 +126,27 @@
         "5.0"
       ];
     };
+    # pipewire.extraConfig = {
+    #   pipewire."92-sunshine" = {
+    #     "context.properties" = {
+    #       "default.clock.rate" = 44100;
+    #     };
+    #   };
+    #   pipewire-pulse."92-sunshine" = {
+    #     context.modules = [
+    #       {
+    #         name = "libpipewire-module-protocol-pulse";
+    #         args = {
+    #           pulse.min.req = "32/44100";
+    #           pulse.default.req = "32/44100";
+    #           pulse.max.req = "32/44100";
+    #           pulse.min.quantum = "32/44100";
+    #           pulse.max.quantum = "32/44100";
+    #         };
+    #       }
+    #     ];
+    #   };
+    # };
     flatpak = {
       enable = true;
       packages = [
