@@ -214,10 +214,14 @@ in
               type = "hacker-news";
               limit = 15;
               collapse-after = 5;
-              # feeds = [{
-              #   url = "https://feeds.bloomberg.com/markets/news.rss";
-              #   title = "Bloomberg";
-              # }];
+              }
+              {
+              type = "rss";
+              feeds = [
+                {
+                url = "https://invidious.sole-alkaid.ts.net/feed/subscriptions.xml";
+                title = "Invidious";
+                }];
               }];
             }];
           }];
@@ -253,11 +257,36 @@ in
         invidious_companion = [
           {
             private_url = "http://localhost:8282/companion";
+            public_url = "https://invidious.sole-alkaid.ts.net/companion";
           }
         ];
         invidious_companion_key = "yo9yoadailah7Thi";
+        https_only = true;
+        external_port = 443;
+        domain = "invidious.sole-alkaid.ts.net";
+        use_innertube_for_captions = true;
       };
     };
+    # opencloud = {
+    #   enable = true;
+    #   # address = "0.0.0.0";
+    #   url = "https://opencloud.sole-alkaid.ts.net";
+    #   environment = {
+    #     PROXY_TLS = "false";
+    #     OPENCLOUD_ADMIN_PASSWORD = "126436";
+    #   };
+    # };
+    # nextcloud = {
+    #   enable = true;
+    #   hostName = "localhost";
+    #   config.adminpassFile = config.sops.secrets."nextcloud_password".path;
+    #   config.dbtype = "sqlite";
+    #   settings = {
+    #     trusted_domains = [
+    #       "nextcloud.sole-alkaid.ts.net"
+    #     ];
+    #   };
+    # };
     jellyfin.enable = true;
     actual.enable = true;
   };

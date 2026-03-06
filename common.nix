@@ -33,6 +33,7 @@
     age.keyFile = "/home/nixy/.config/sops/age/keys.txt";
     secrets."nixy_password" = {};
     secrets."invidious_companion_key" = {};
+    secrets."nextcloud_password" = {};
     secrets."nixy_password".neededForUsers = true;
   };
 
