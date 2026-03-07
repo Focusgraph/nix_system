@@ -35,18 +35,22 @@
           gaps = 16;
         };
         hotkey-overlay.skip-at-startup = true;
-        binds = {
+        binds =
+        let
+          spawnLocked = command: {
+            action.spawn = command;
+            allow-when-locked = true;
+          };
+          noRepeat = {
+            repeat = false;
+          };
+        in
+        {
           "Mod+Space".action.spawn-sh = "noctalia-shell ipc call launcher toggle";
           "Mod+S".action.spawn-sh = "noctalia-shell ipc call controlCenter toggle";
           "Mod+Shift+G".action.spawn-sh = "noctalia-shell ipc call lockScreen lock";
-          "Mod+Q" = {
-            action.close-window = [];
-            repeat = false;
-          };
-          "Mod+O" = {
-            action.toggle-overview = [];
-            repeat = false;
-          };
+          "Mod+Q" = ( noRepeat // { action.close-window = []; });
+          "Mod+O" = ( noRepeat // { action.toggle-overview = []; });
           "Mod+H".action.focus-column-left = [];
           "Mod+J".action.focus-window-down = [];
           "Mod+K".action.focus-window-up = [];
@@ -66,12 +70,15 @@
           "Mod+Ctrl+R".action.reset-window-height = [];
           "Mod+F".action.maximize-column = [];
           "Mod+V".action.toggle-window-floating = [];
-          "XF86AudioRaiseVolume".action.spawn = [ "noctalia-shell" "ipc" "call" "volume" "increase"];
-          "XF86AudioLowerVolume".action.spawn = [ "noctalia-shell" "ipc" "call" "volume" "decrease"];
-          "XF86AudioMute".action.spawn = [ "noctalia-shell" "ipc" "call" "volume" "muteOutput"]; 
-          "XF86AudioMicMute".action.spawn = [ "noctalia-shell" "ipc" "call" "volume" "muteInput"]; 
-          "XF86MonBrightnessUp".action.spawn = [ "noctalia-shell" "ipc" "call" "brightness" "increase"];
-          "XF86MonBrightnessDown".action.spawn = [ "noctalia-shell" "ipc" "call" "brightness" "decrease"];
+          "XF86AudioRaiseVolume" = (spawnLocked [ "noctalia-shell" "ipc" "call" "volume" "increase" ]);
+          "XF86AudioLowerVolume" = (spawnLocked [ "noctalia-shell" "ipc" "call" "volume" "decrease" ]);
+          "XF86AudioPlay" = (spawnLocked [ "noctalia-shell" "ipc" "call" "media" "playPause" ]);
+          "XF86AudioNext" = (spawnLocked [ "noctalia-shell" "ipc" "call" "media" "next" ]);
+          "XF86AudioPrev" = (spawnLocked [ "noctalia-shell" "ipc" "call" "media" "previous" ]);
+          "XF86AudioMute" = (spawnLocked [ "noctalia-shell" "ipc" "call" "volume" "muteOutput" ]);
+          "XF86AudioMicMute" = (spawnLocked [ "noctalia-shell" "ipc" "call" "volume" "muteInput" ]);
+          "XF86MonBrightnessUp" = (spawnLocked [ "noctalia-shell" "ipc" "call" "brightness" "increase" ]);
+          "XF86MonBrightnessDown" = (spawnLocked [ "noctalia-shell" "ipc" "call" "brightness" "decrease" ]);
         };
       };
     };
