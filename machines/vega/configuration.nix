@@ -71,6 +71,7 @@
     # pkgs.gnomeExtensions.night-theme-switcher
     # pkgs.gnomeExtensions.appindicator
     # pkgs.gnome-tweaks
+    # pkgs.gnome-console
     # Gaming
     pkgs.moonlight-qt
     # Web browsers

@@ -16,7 +16,7 @@
     "$HOME/nixos"
   ];
   programs = {
-    alacritty.enable = true;
+    ghostty.enable = true;
     noctalia-shell.enable = true;
     niri = {
       package = pkgs.niri;
@@ -28,6 +28,7 @@
             ];
           }
         ];
+        debug.honor-xdg-activation-with-invalid-serial = [];
         input.keyboard.xkb = {
           layout = "us";
           variant = "colemak";
@@ -44,10 +45,15 @@
             refresh = 143.999;
           };
         };
+        # window-rules = {
+        #   geometry-corner-radius = 20;
+        #   clip-to-geometry = true;
+        # };
         layout = {
           gaps = 16;
           
         };
+        hotkey-overlay.skip-at-startup = true;
         binds = {
           "Mod+Space".action.spawn-sh = "noctalia-shell ipc call launcher toggle";
           "Mod+S".action.spawn-sh = "noctalia-shell ipc call controlCenter toggle";
@@ -86,7 +92,6 @@
           "XF86MonBrightnessUp".action.spawn = [ "noctalia-shell" "ipc" "call" "brightness" "increase"];
           "XF86MonBrightnessDown".action.spawn = [ "noctalia-shell" "ipc" "call" "brightness" "decrease"];
         };
-        hotkey-overlay.skip-at-startup = true;
       };
     };
   };
