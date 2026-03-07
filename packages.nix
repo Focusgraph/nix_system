@@ -13,5 +13,6 @@
     pkgs.btop
     pkgs.starship
     pkgs.fzf
+    pkgs.fastfetch
   ];
 }

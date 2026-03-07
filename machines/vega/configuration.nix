@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  config,
   ...
 }:
 
@@ -28,19 +27,19 @@
   ];
   powerManagement.powertop.enable = true;
   hardware.bluetooth.enable = true;
+  hardware.i2c.enable = true;
 
   networking = {
     hostName = "vega";
     networkmanager.wifi.powersave = true;
   };
 
-  environment.variables = {
-    PATH = "\${PATH}:/home/nixy/.local/bin:/home/nixy/bash_scripts:/home/nixy/synclone";
-  };
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   users.users.nixy = {
     extraGroups = [
       "wheel"
+      "i2c"
     ];
   };
 
@@ -49,29 +48,29 @@
       enable = true;
       dockerCompat = true;
     };
-    libvirtd.enable = true;
+    # libvirtd.enable = true;
   };
 
-  environment.gnome.excludePackages = [
-    pkgs.epiphany
-    pkgs.gnome-text-editor
-    pkgs.gnome-characters
-    pkgs.gnome-contacts
-    pkgs.gnome-font-viewer
-    pkgs.gnome-maps
-    pkgs.gnome-music
-    pkgs.gnome-system-monitor
-    pkgs.gnome-weather
-    pkgs.gnome-connections
-    pkgs.simple-scan
-    pkgs.yelp
-  ];
+  # environment.gnome.excludePackages = [
+  #   pkgs.epiphany
+  #   pkgs.gnome-text-editor
+  #   pkgs.gnome-characters
+  #   pkgs.gnome-contacts
+  #   pkgs.gnome-font-viewer
+  #   pkgs.gnome-maps
+  #   pkgs.gnome-music
+  #   pkgs.gnome-system-monitor
+  #   pkgs.gnome-weather
+  #   pkgs.gnome-connections
+  #   pkgs.simple-scan
+  #   pkgs.yelp
+  # ];
 
   environment.systemPackages = [
     # Gnome
-    pkgs.gnomeExtensions.night-theme-switcher
-    pkgs.gnomeExtensions.appindicator
-    pkgs.gnome-tweaks
+    # pkgs.gnomeExtensions.night-theme-switcher
+    # pkgs.gnomeExtensions.appindicator
+    # pkgs.gnome-tweaks
     # Gaming
     pkgs.moonlight-qt
     # Web browsers
@@ -83,22 +82,26 @@
     # Tools
     pkgs.keepassxc
     pkgs.appimage-run
-    pkgs.libimobiledevice
+    # pkgs.libimobiledevice
     pkgs.distrobox
     # Code editors
-    pkgs.zed-editor
-    pkgs.package-version-server
+    # pkgs.zed-editor
+    # pkgs.package-version-server
+    pkgs.ddcutil
+    pkgs.jq
   ];
 
-  qt = {
-    enable = true;
-    platformTheme = "gnome";
-    style = "adwaita-dark";
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme = "gnome";
+  #   style = "adwaita-dark";
+  # };
 
   services = {
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    # displayManager.gdm.enable = true;
+    # desktopManager.gnome.enable = true;
+    power-profiles-daemon.enable = true;
+    upower.enable = true;
     fwupd.enable = true;
     openssh.enable = true;
     openssh.openFirewall = false;
@@ -110,9 +113,9 @@
       ];
     };
     fprintd.enable = true;
-    usbmuxd.enable = true;
-    qemuGuest.enable = true;
-    spice-vdagentd.enable = true;
+    # usbmuxd.enable = true;
+    # qemuGuest.enable = true;
+    # spice-vdagentd.enable = true;
     btrfs.autoScrub = {
       enable = true;
       fileSystems = [ "/" ];
@@ -147,36 +150,40 @@
     #     ];
     #   };
     # };
-    flatpak = {
-      enable = true;
-      packages = [
-      ];
-    };
-    syncthing = {
-      enable = true;
-      user = "nixy";
-      dataDir = "/home/nixy";
-      configDir = "/home/nixy/.config/syncthing";
-      guiPasswordFile = config.sops.secrets."nixy_password".path;
-      settings = {
-        gui.user = "nixy";
-        devices = {
-          "pixel6" = {
-            id = "4VGTGWP-F3ENL55-4PKBV4V-72JG2AR-6E2E5IU-NKSH6BJ-6LXVBC2-CI2ZJA7";
-          };
-        };
-        folders = {
-          "Keepass" = {
-            path = "/home/nixy/Keepass";
-            devices = [ "pixel6" ];
-          };
-        };
-      };
-    };
+    # flatpak = {
+    #   enable = true;
+    #   packages = [
+    #   ];
+    # };
+    # syncthing = {
+    #   enable = true;
+    #   user = "nixy";
+    #   dataDir = "/home/nixy";
+    #   configDir = "/home/nixy/.config/syncthing";
+    #   guiPasswordFile = config.sops.secrets."nixy_password".path;
+    #   settings = {
+    #     gui.user = "nixy";
+    #     devices = {
+    #       "pixel6" = {
+    #         id = "4VGTGWP-F3ENL55-4PKBV4V-72JG2AR-6E2E5IU-NKSH6BJ-6LXVBC2-CI2ZJA7";
+    #       };
+    #     };
+    #     folders = {
+    #       "Keepass" = {
+    #         path = "/home/nixy/Keepass";
+    #         devices = [ "pixel6" ];
+    #       };
+    #     };
+    #   };
+    # };
   };
 
   programs = {
-    virt-manager.enable = true;
+    regreet.enable = true;
+    niri = {
+      enable = true;
+    };
+    # virt-manager.enable = true;
     gamemode.enable = true;
     starship.enable = true;
     ssh = {
