@@ -54,6 +54,7 @@
   };
 
   environment.systemPackages = [
+    pkgs.nemo
     ### Gaming
     pkgs.moonlight-qt
     ### Web browsers
@@ -75,8 +76,12 @@
 
   services = {
     power-profiles-daemon.enable = true;
-    upower.enable = true;
-    fwupd.enable = true;
+    upower.enable = true; # Battery report
+    fprintd.enable = true; # Fingerprint reader
+    fwupd.enable = true; # Firmware updates
+    # gvfs.enable = true; # Gnome functionalities
+    # tumbler.enable = true;
+
     tailscale = {
       enable = true;
       disableUpstreamLogging = true;
@@ -84,7 +89,6 @@
         "--accept-routes"
       ];
     };
-    fprintd.enable = true;
     # usbmuxd.enable = true;
     # qemuGuest.enable = true;
     # spice-vdagentd.enable = true;

@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -15,6 +15,11 @@
     stateVersion = "25.11";
     sessionPath = [
       "$HOME/nixos"
+    ];
+    packages = [
+      pkgs.gnome-text-editor
+      pkgs.loupe
+      pkgs.showtime
     ];
   };
 
