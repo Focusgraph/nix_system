@@ -68,7 +68,7 @@
             urgent.color = "#ba1a1a";
           };
           shadow = {
-            enable = true;
+            enable = false;
             color = "#00000070";
           };
           tab-indicator = {
@@ -105,6 +105,8 @@
           "Mod+Shift+G".action.spawn-sh = "noctalia-shell ipc call lockScreen lock";
           "Mod+C" = ( noRepeat // { action.close-window = []; });
           "Mod+O" = ( noRepeat // { action.toggle-overview = []; });
+          "Mod+Page_Down".action.focus-workspace-down = [];
+          "Mod+Page_Up".action.focus-workspace-up = [];
           "Mod+H".action.focus-column-left = [];
           "Mod+J".action.focus-window-down = [];
           "Mod+K".action.focus-window-up = [];
