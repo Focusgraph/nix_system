@@ -43,7 +43,7 @@
           clip-to-geometry = true;
           geometry-corner-radius =
           let
-            r = 10.;
+            r = 8.;
           in
           {
             top-left = r;
@@ -57,6 +57,28 @@
           gaps = 8;
           always-center-single-column = true;
           default-column-width = { proportion = 1. / 2.; };
+          focus-ring = {
+            active.color = "#635f4a";
+            inactive.color = "#fdf8f5";
+            urgent.color = "#ba1a1a";
+          };
+          border = {
+            active.color = "#635f4a";
+            inactive.color = "#fdf8f5";
+            urgent.color = "#ba1a1a";
+          };
+          shadow = {
+            enable = true;
+            color = "#00000070";
+          };
+          tab-indicator = {
+            active.color = "#635f4a";
+            inactive.color = "#eae2c9";
+            urgent.color = "#ba1a1a";
+          };
+          insert-hint = {
+            display.color = "635f4a80";
+          };
         };
 
         prefer-no-csd = true;
