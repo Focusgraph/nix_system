@@ -8,7 +8,6 @@
   environment.systemPackages = [
     pkgs.nvd
     pkgs.nil
-    pkgs.helix
     pkgs.btop
     pkgs.fastfetch
   ];
