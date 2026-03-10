@@ -18,6 +18,7 @@
       pkgs.gnome-text-editor
       pkgs.loupe
       pkgs.showtime
+      pkgs.cava
     ];
   };
 
