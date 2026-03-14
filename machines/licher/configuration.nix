@@ -210,19 +210,20 @@ in
               {
               type = "to-do";
               }
-              {
-              type = "hacker-news";
-              limit = 15;
-              collapse-after = 5;
-              }
-              {
-              type = "rss";
-              feeds = [
-                {
-                url = "https://invidious.sole-alkaid.ts.net/feed/subscriptions.xml";
-                title = "Invidious";
-                }];
-              }];
+              # {
+              # type = "hacker-news";
+              # limit = 15;
+              # collapse-after = 5;
+              # }
+              # {
+              # type = "rss";
+              # feeds = [
+              #   {
+              #   url = "https://invidious.sole-alkaid.ts.net/feed/subscriptions.xml";
+              #   title = "Invidious";
+              #   }];
+              # }
+              ];
             }];
           }];
       };
