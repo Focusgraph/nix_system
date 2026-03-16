@@ -1,4 +1,5 @@
 {
+  xdg.configFile."cava/config".force = true;
   programs.cava = {
     enable = true;
     settings = {

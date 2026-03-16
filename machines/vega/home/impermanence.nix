@@ -11,6 +11,8 @@
       "nixos"
       ".ssh"
       ".bash_history"
+      ".librewolf/default"
+      ".config/librewolf"
     ];
     files = [
       ".config/sops/age/keys.txt"
