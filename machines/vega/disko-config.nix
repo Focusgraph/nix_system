@@ -17,17 +17,22 @@
                 mountOptions = [ "umask=0077" ];
               };
             };
-            root = {
+            luks = {
               size = "100%";
               content = {
-                type = "btrfs";
-                extraArgs = [ "-f" ];
-                mountpoint = "/";
-                subvolumes = {
-                  "/rootfs".mountpoint = "/";
-                  "/persistent".mountpoint = "/persistent";
-                  "/nix".mountpoint = "/nix";
-                };
+                type = "luks";
+                name = "crypted";
+                settings.allowDiscards = true;
+                content = {
+                  type = "btrfs";
+                  extraArgs = [ "-f" ];
+                  mountpoint = "/";
+                  subvolumes = {
+                    "/rootfs".mountpoint = "/";
+                    "/persistent".mountpoint = "/persistent";
+                    "/nix".mountpoint = "/nix";
+                  };
+                }
               };
             };
           };
