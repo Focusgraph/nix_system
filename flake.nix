@@ -52,7 +52,7 @@
     nixosConfigurations.vega = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
-        ./machines/vega/configuration.nix
+        ./hosts/vega/configuration.nix
         # nix-flatpak.nixosModules.nix-flatpak
         impermanence.nixosModules.impermanence
         disko.nixosModules.disko
@@ -63,7 +63,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.nixy = ./machines/vega/home/home.nix;
+          home-manager.users.nixy = ./hosts/vega/home.nix;
           home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.backupFileExtension = "bkp";
         }
@@ -72,13 +72,13 @@
     nixosConfigurations.licher = nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
       modules = [
-        ./machines/licher/configuration.nix
+        ./hosts/licher/configuration.nix
         sops-nix.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.nixy = ./machines/licher/home.nix;
+          home-manager.users.nixy = ./hosts/licher/home.nix;
           home-manager.extraSpecialArgs = { inherit inputs; };
           home-manager.backupFileExtension = "bkp";
         }
