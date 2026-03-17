@@ -105,15 +105,15 @@
       enable = true;
       fileSystems = [ "/" ];
     };
-    # beesd.filesystems.root = {
-    #   spec = "/dev/nvme0n1p2";
-    #   hashTableSizeMB = 512;
-    #   verbosity = "info";
-    #   extraOptions = [
-    #     "--loadavg-target"
-    #     "5.0"
-    #   ];
-    # };
+    beesd.filesystems.root = {
+      spec = "/";
+      hashTableSizeMB = 512;
+      verbosity = "info";
+      extraOptions = [
+        "--loadavg-target"
+        "5.0"
+      ];
+    };
     # flatpak = {
     #   enable = true;
     #   packages = [
