@@ -4,7 +4,7 @@
   boot = {
     loader.limine.enable = true;
     # loader.systemd-boot.enable = true;
-    # loader.efi.canTouchEfiVariables = true;
+    loader.efi.canTouchEfiVariables = true;
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
@@ -21,6 +21,7 @@
     networkmanager.dns = "none";
     nameservers = [
       "194.242.2.3" # Mullvad DNS
+      "8.8.8.8"
     ];
   };
 
@@ -37,8 +38,7 @@
   users.users.nixy = {
     isNormalUser = true;
     home = "/home/nixy";
-    # hashedPasswordFile = config.sops.secrets."nixy_password".path;
-    password = "126436";
+    hashedPasswordFile = config.sops.secrets."nixy_password".path;
   };
 
   fonts = {

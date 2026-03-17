@@ -32,7 +32,7 @@
                     "/persistent".mountpoint = "/persistent";
                     "/nix".mountpoint = "/nix";
                   };
-                }
+                };
               };
             };
           };

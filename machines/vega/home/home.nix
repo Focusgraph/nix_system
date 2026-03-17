@@ -5,8 +5,8 @@
     inputs.noctalia.homeModules.default
     ../../../shared_home
     # ./impermanence.nix
-    # ./niri.nix
-    # ./noctalia.nix
+    ./niri.nix
+    ./noctalia.nix
     ./yazi.nix
     ./cava.nix
     ./keepassxc.nix
