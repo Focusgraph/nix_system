@@ -20,7 +20,7 @@
     networkmanager.dns = "none";
     nameservers = [
       "194.242.2.3" # Mullvad DNS
-      "8.8.8.8"
+      "1.1.1.1"
     ];
   };
 
