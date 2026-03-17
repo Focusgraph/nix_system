@@ -2,8 +2,9 @@
 
 {
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    loader.limine.enable = true;
+    # loader.systemd-boot.enable = true;
+    # loader.efi.canTouchEfiVariables = true;
     kernelPackages = pkgs.linuxPackages_latest;
   };
 
@@ -36,7 +37,8 @@
   users.users.nixy = {
     isNormalUser = true;
     home = "/home/nixy";
-    hashedPasswordFile = config.sops.secrets."nixy_password".path;
+    # hashedPasswordFile = config.sops.secrets."nixy_password".path;
+    password = "126436";
   };
 
   fonts = {

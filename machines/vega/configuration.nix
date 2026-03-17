@@ -12,7 +12,7 @@
     ../../packages.nix
     ./hardware-configuration.nix
     ./disko-config.nix
-    ./impermanence.nix
+    # ./impermanence.nix
     # ./gnome.nix
   ];
 
@@ -143,15 +143,15 @@
   };
 
   programs = {
-    regreet = {
-      enable = true;
-      settings = {
-        application_prefer_dark_theme = true;
-      };
-    };
-    niri = {
-      enable = true;
-    };
+    # regreet = {
+    #   enable = true;
+    #   settings = {
+    #     application_prefer_dark_theme = true;
+    #   };
+    # };
+    # niri = {
+    #   enable = true;
+    # };
     # virt-manager.enable = true;
   };
 }
