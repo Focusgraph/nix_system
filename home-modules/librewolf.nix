@@ -62,7 +62,7 @@
       "webgl.disabled" = true;
       "identity.fxaccounts.enabled" = false;
       "network.cookie.lifetimePolicy" = 0;
-      "keyword.enabled" = false;
+      "keyword.enabled" = true;
       "browser.urlbar.suggest.searches" = false;
       "browser.fixup.alternate.enabled" = false;
       # "media.autoplay.blocking_policy" = 2;
