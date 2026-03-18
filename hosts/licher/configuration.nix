@@ -1,4 +1,4 @@
-{ pkgs, config, pkgsUnstable, ... }:
+{ pkgs, pkgsUnstable, ... }:
 let
   subreddits = [
     "NixOS"
@@ -12,26 +12,19 @@ let
   ];
 in
 {
+  system.stateVersion = "25.11";
   imports = [
-    ../../common.nix
-    ../../packages.nix
     ./hardware-configuration.nix
+    ../../modules
   ];
+  users.users.nixy.extraGroups = [ "wheel" "immich" "input" "video" ];
   networking.hostName = "licher";
-  boot.kernelParams = [ "amdgpu.virtual_display=0000:0c:00.0,1" ];
-  boot.swraid.mdadmConf = "MAILADDR ruben.ledesma.go@protonmail.com";
   zramSwap.enable = true;
-  users.users.nixy = {
-    extraGroups = [
-      "wheel"
-      "immich"
-      "input"
-      "video"
-    ];
+  boot = {
+    kernelParams = [ "amdgpu.virtual_display=0000:0c:00.0,1" ];
+    swraid.mdadmConf = "MAILADDR ruben.ledesma.go@protonmail.com";
   };
-
   nixpkgs.config.allowUnfree = true;
-
   environment.systemPackages = [
     pkgs.mdadm
     pkgs.jellyfin
@@ -42,7 +35,7 @@ in
     pkgs.wineWow64Packages.staging
     pkgs.winetricks
   ];
-
+  programs.steam.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.oci-containers = {
     backend = "docker";
@@ -61,17 +54,6 @@ in
       };
     };  
   };
-  programs = {
-    starship.enable = true;
-    steam.enable = true;
-    ssh.extraConfig = "
-        Host codeberg.org
-          HostName codeberg.org
-          User git
-          IdentityFile /home/nixy/.ssh/codeberg
-    ";
-  };
-
   services = {
     desktopManager.plasma6.enable = true;
     displayManager.sddm.enable = true;
@@ -79,19 +61,13 @@ in
       enable = true;
       user = "nixy";
     };
-    udev.extraRules = ''
-        KERNEL=="uinput", MODE="0660", GROUP="input", SYMLINK+="uinput"
-    ''; # Fix input for sunshine
-
+    udev.extraRules = '' KERNEL=="uinput", MODE="0660", GROUP="input", SYMLINK+="uinput" ''; # Fix input for sunshine
     openssh.enable = true;
     openssh.openFirewall = false;
     tailscale = {
       enable = true;
       disableUpstreamLogging = true;
       permitCertUid = "caddy";
-      # extraSetFlags = [
-      #   "--advertise-exit-node"
-      # ];
     };
     # caddy = {
     #   enable = true;
@@ -117,6 +93,29 @@ in
         hashTableSizeMB = 512;
         verbosity = "info";
         extraOptions = [ "--loadavg-target" "5.0" ];
+      };
+    };
+    jellyfin.enable = true;
+    actual.enable = true;
+    sunshine = {
+      enable = true;
+      autoStart = true;
+      capSysAdmin = true; # only needed for Wayland -- omit this when using with Xorg
+      openFirewall = true;
+    };
+    redlib = {
+      enable = true; 
+      package = pkgsUnstable.redlib;
+      address = "127.0.0.1";
+      settings = {
+        REDLIB_SFW_ONLY = "off";
+        REDLIB_DEFAULT_THEME = "nord";
+        REDLIB_DEFAULT_POST_SORT = "new";
+        REDLIB_DEFAULT_COMMENT_SORT = "old";
+        REDLIB_DEFAULT_BLUR_SPOILER = "on";
+        REDLIB_DEFAULT_USE_HLS = "on";
+        REDLIB_DEFAULT_REMOVE_DEFAULT_FEEDS = "on";
+        REDLIB_DEFAULT_SUBSCRIPTIONS = builtins.concatStringsSep "+" subreddits;
       };
     };
     glance = {
@@ -228,46 +227,25 @@ in
           }];
       };
     };
-    sunshine = {
-      enable = true;
-      autoStart = true;
-      capSysAdmin = true; # only needed for Wayland -- omit this when using with Xorg
-      openFirewall = true;
-    };
-    redlib = {
-      enable = true; 
-      package = pkgsUnstable.redlib;
-      address = "127.0.0.1";
-      settings = {
-        REDLIB_SFW_ONLY = "off";
-        REDLIB_DEFAULT_THEME = "nord";
-        REDLIB_DEFAULT_POST_SORT = "new";
-        REDLIB_DEFAULT_COMMENT_SORT = "old";
-        REDLIB_DEFAULT_BLUR_SPOILER = "on";
-        REDLIB_DEFAULT_USE_HLS = "on";
-        REDLIB_DEFAULT_REMOVE_DEFAULT_FEEDS = "on";
-        REDLIB_DEFAULT_SUBSCRIPTIONS = builtins.concatStringsSep "+" subreddits;
-      };
-    };
-    invidious = {
-      enable = true;
-      sig-helper.enable = false;
-      port = 2560;
-      # address = "127.0.0.1";
-      settings = {
-        invidious_companion = [
-          {
-            private_url = "http://localhost:8282/companion";
-            public_url = "https://invidious.sole-alkaid.ts.net/companion";
-          }
-        ];
-        invidious_companion_key = "yo9yoadailah7Thi";
-        https_only = true;
-        external_port = 443;
-        domain = "invidious.sole-alkaid.ts.net";
-        use_innertube_for_captions = true;
-      };
-    };
+    # invidious = {
+    #   enable = true;
+    #   sig-helper.enable = false;
+    #   port = 2560;
+    #   # address = "127.0.0.1";
+    #   settings = {
+    #     invidious_companion = [
+    #       {
+    #         private_url = "http://localhost:8282/companion";
+    #         public_url = "https://invidious.sole-alkaid.ts.net/companion";
+    #       }
+    #     ];
+    #     invidious_companion_key = "yo9yoadailah7Thi";
+    #     https_only = true;
+    #     external_port = 443;
+    #     domain = "invidious.sole-alkaid.ts.net";
+    #     use_innertube_for_captions = true;
+    #   };
+    # };
     # opencloud = {
     #   enable = true;
     #   # address = "0.0.0.0";
@@ -288,8 +266,5 @@ in
     #     ];
     #   };
     # };
-    jellyfin.enable = true;
-    actual.enable = true;
   };
-  system.stateVersion = "25.11";
 }
