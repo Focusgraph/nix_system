@@ -2,12 +2,14 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    impermanence.url = "github:nix-community/impermanence";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,10 +20,10 @@
     };
     niri = {
       url = "github:sodiboo/niri-flake";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/v4.6.7";
+      url = "github:noctalia-dev/noctalia-shell/v4.7.0";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     zen-browser = {
@@ -39,7 +41,6 @@
     nixpkgs-unstable,
     impermanence,
     disko,
-    # nix-flatpak,
     nix-index-database,
     home-manager,
     niri,
@@ -53,7 +54,6 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./hosts/vega/configuration.nix
-        # nix-flatpak.nixosModules.nix-flatpak
         impermanence.nixosModules.impermanence
         disko.nixosModules.disko
         nix-index-database.nixosModules.default

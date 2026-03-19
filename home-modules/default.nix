@@ -18,6 +18,7 @@
       pkgs.nvd
       pkgs.nil
       pkgs.fastfetch
+      pkgs.ggshield
     ];
   };
   xdg.autostart.enable = true;
