@@ -17,5 +17,6 @@
     pkgs.ladybird
     pkgs.ddcutil
     pkgs.jq
+    pkgs.mpv
   ];
 }

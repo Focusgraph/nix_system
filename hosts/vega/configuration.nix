@@ -1,4 +1,4 @@
-{ pkgs, pkgsUnstable, ... }:
+{ pkgs, pkgsUnstable, lib, ... }:
 {
   system.stateVersion = "25.11";
   imports = [
@@ -29,6 +29,7 @@
     upower.enable = true; # Battery report
     fprintd.enable = true; # Fingerprint reader
     fwupd.enable = true; # Firmware updates
+    gnome.gnome-keyring.enable = lib.mkForce false;
     tailscale = {
       enable = true;
       disableUpstreamLogging = true;
