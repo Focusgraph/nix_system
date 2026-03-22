@@ -22,6 +22,7 @@
   programs = {
     niri.enable = true;
     regreet.enable = true;
+    ssh.startAgent = true;
   };
   powerManagement.powertop.enable = true;
   services = {

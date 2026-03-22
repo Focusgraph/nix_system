@@ -10,13 +10,11 @@
       "codeberg.org" = {
         hostname = "codeberg.org";
         user = "git";
-        # identityFile = "/home/nixy/.ssh/codeberg";
         addKeysToAgent = "yes";
       };
       "github.com" = {
         hostname = "github.com";
         user = "git";
-        # identityFile = "/home/nixy/.ssh/github";
         addKeysToAgent = "yes";
       };
     };

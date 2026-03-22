@@ -11,7 +11,7 @@
       gpg.format = "ssh";
     };
     signing = {
-      key = "/home/nixy/.ssh/public_key";
+      key = "/home/nixy/.ssh/key.pub";
       signByDefault = true;
     };
   };
