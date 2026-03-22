@@ -3,8 +3,8 @@
     enable = true;
     settings = {
       user = {
-        name = "focusgraph";
-        email = "ruben.ledesma.go@protonmail.com";
+        name = "niridium";
+        email = "niridium@tuta.io";
       };
       init.defaultBranch = "main";
       core.editor = "hx";
