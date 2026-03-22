@@ -29,6 +29,7 @@
     pkgs.winetricks
   ];
   programs.steam.enable = true;
+  programs.ssh.startAgent = true;
   services = {
     displayManager.autoLogin = {
       enable = true;

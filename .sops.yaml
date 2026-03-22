@@ -1,6 +1,6 @@
 keys:
   - &admin_vega age16g2rfkqayvdtqrdzeak4ju7hkjydf0n2ajel69t33ztn9uch3djsz334pt 
-  - &server_licher age13qu697x72h0e0scr5sptqtdc9q8wyfx4sdxh2v3tnj4a0kmvlqhqp5avml
+  - &server_licher age1clc00ve8zsvz3ecucy5t0zyh4zvdfgtu2j9xmeyzeyzjm79zec0qlf2990
 creation_rules:
   - path_regex: secrets/secrets.(yaml|json)
     key_groups:
