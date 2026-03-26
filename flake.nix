@@ -34,6 +34,7 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
   };
   outputs = inputs@{
     self,
@@ -47,6 +48,7 @@
     noctalia,
     zen-browser,
     sops-nix,
+    arkenfox,
     ...
   }:
   {
