@@ -28,9 +28,14 @@
     enableDefaultPackages = true;
     fontconfig.useEmbeddedBitmaps = true;
   };
+
+  hardware.i2c.enable = true; # Backlight control
+
   security.rtkit.enable = true;
 
   services = {
+    power-profiles-daemon.enable = true;
+    fwupd.enable = true; # Firmware updates
     gvfs.enable = true; # Filesystems tool for Nautilus
   };
 
