@@ -4,10 +4,4 @@
     inherit (pkgs.stdenv.hostPlatform) system;
     inherit (config.nixpkgs) config;
   };
-
-  environment.systemPackages = [
-    pkgs.nvd
-    pkgs.nil
-    pkgs.fastfetch
-  ];
 }
