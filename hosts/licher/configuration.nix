@@ -4,12 +4,13 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules
+    ../../modules/tailscale.nix
+    ../../modules/kde.nix
+    ../../modules/sunshine.nix
     ../../modules/glance.nix
     ../../modules/redlib.nix
     ../../modules/invidious.nix
-    ../../modules/sunshine.nix
-    ../../modules/kde.nix
-    ../../modules/tailscale.nix
+    ../../modules/jellyfin.nix
   ];
   users.users.nixy.extraGroups = [ "wheel" "immich" "input" "video" ];
   networking.hostName = "licher";
@@ -48,7 +49,6 @@
         extraOptions = [ "--loadavg-target" "5.0" ];
       };
     };
-    jellyfin.enable = true;
     actual.enable = true;
   };
 }
