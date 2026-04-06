@@ -6,6 +6,7 @@
     ./submodules/sops.nix
     ./submodules/users.nix
     ./submodules/packages.nix
+    ./submodules/nix_ld.nix
   ];
   console.keyMap = "colemak";
   time.timeZone = "Europe/Madrid";
