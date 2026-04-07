@@ -11,6 +11,7 @@
     ../../modules/redlib.nix
     ../../modules/invidious.nix
     ../../modules/jellyfin.nix
+    ../../modules/libretranslate.nix
   ];
   users.users.nixy.extraGroups = [ "wheel" "immich" "input" "video" ];
   networking.hostName = "licher";
@@ -27,7 +28,7 @@
     pkgs.jellyfin-ffmpeg
     pkgsUnstable.lutris-free
     pkgs.mangohud
-    pkgs.wineWow64Packages.staging
+    pkgs.wineWow64Packages.stableFull_11
     pkgs.winetricks
   ];
   programs.steam.enable = true;
