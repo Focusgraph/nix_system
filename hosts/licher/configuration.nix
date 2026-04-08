@@ -4,6 +4,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules
+    ../../modules/openssh.nix
     ../../modules/tailscale.nix
     ../../modules/kde.nix
     ../../modules/sunshine.nix
