@@ -1,4 +1,4 @@
-{ pkgsUnstable, lib, ... }:
+{ config, pkgsUnstable, lib, ... }:
 {
   system.stateVersion = "25.11";
   imports = [
@@ -18,9 +18,17 @@
   ];
   programs = {
     niri.enable = true;
-    regreet.enable = true;
   };
   services = {
     gnome.gnome-keyring.enable = lib.mkForce false; # Replaced by KeepassXC
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${config.programs.niri.package}/bin/niri-session";
+          user = "nixy";
+        };
+      };
+    };
   };
 }
