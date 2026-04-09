@@ -20,5 +20,6 @@
     pkgs.jq
     pkgs.mpv
     pkgs.tutanota-desktop
+    pkgs.factorio
   ];
 }

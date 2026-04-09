@@ -5,5 +5,6 @@
     age.keyFile = "/home/nixy/.config/sops/age/keys.txt";
     secrets."nixy_password" = {};
     secrets."nixy_password".neededForUsers = true;
+    secrets."factorio_token"= {};
   };
 }
