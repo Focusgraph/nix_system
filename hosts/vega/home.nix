@@ -11,6 +11,7 @@
     ../../home-modules/keepassxc.nix
     # ../../home-modules/librewolf.nix
     ../../home-modules/firefox.nix
+    ../../home-modules/zed-editor.nix
   ];
   home.packages = [
     pkgs.loupe
