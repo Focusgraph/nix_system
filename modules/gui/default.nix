@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   pkgsUnstable,
   username,
   ...
@@ -10,7 +11,11 @@
   users.users.${username}.extraGroups = [ "i2c" ];
 
   # Desktop Environment
-  programs.niri.enable = true;
+  # nixpkgs.overlays = [ niri.overlays.niri ];
+  programs.niri = {
+    enable = true;
+    package = pkgs.niri-unstable;
+  };
   services.greetd = {
     enable = true;
     settings.default_session = {

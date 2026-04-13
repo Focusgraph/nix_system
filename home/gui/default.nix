@@ -6,6 +6,7 @@
     ./niri.nix
     ./noctalia.nix
     ./qt.nix
+    ./wayland.nix
   ];
   home.packages = [
     pkgs.nautilus

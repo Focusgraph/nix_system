@@ -76,6 +76,7 @@
                 home-manager.users.${username} = ./home/hosts/vega.nix;
                 home-manager.extraSpecialArgs = { inherit inputs; };
                 home-manager.backupFileExtension = "bkp";
+                nixpkgs.overlays = [ niri.overlays.niri ];
               }
             ];
           };
