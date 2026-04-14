@@ -23,9 +23,6 @@
       pkgs.nvd
       pkgs.nil
       pkgs.fastfetch
-      pkgs.ggshield
-      pkgs.git-conventional-commits
-      pkgs.pre-commit
     ];
   };
   xdg.autostart.enable = true;
