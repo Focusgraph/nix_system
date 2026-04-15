@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = [
-    pkgs.factorio
+    # pkgs.factorio
+    pkgs.factorio-space-age
   ];
 }
