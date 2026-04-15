@@ -58,7 +58,15 @@
           let
             username = "nixy";
             hostname = "vega";
-            specialArgs = { inherit inputs username hostname; };
+            swapspace = 8;
+            specialArgs = {
+              inherit
+                inputs
+                username
+                hostname
+                swapspace
+                ;
+            };
           in
           nixpkgs.lib.nixosSystem {
             inherit specialArgs;
@@ -84,7 +92,15 @@
           let
             username = "nixy";
             hostname = "licher";
-            specialArgs = { inherit inputs username hostname; };
+            swapspace = 8;
+            specialArgs = {
+              inherit
+                inputs
+                username
+                hostname
+                swapspace
+                ;
+            };
           in
           nixpkgs.lib.nixosSystem {
             inherit specialArgs;

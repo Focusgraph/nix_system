@@ -5,11 +5,10 @@
     ./hardware-configuration.nix
     ../../modules/core
     ../../modules/tui
+    ../../modules/filesystem/swap.nix
     ../../modules/services
     ../../modules/tailscale.nix
   ];
-  # networking.hostName = "licher";
-  zramSwap.enable = true;
   boot = {
     kernelParams = [ "amdgpu.virtual_display=0000:0c:00.0,1" ];
     swraid.mdadmConf = "MAILADDR ruben.ledesma.go@protonmail.com";

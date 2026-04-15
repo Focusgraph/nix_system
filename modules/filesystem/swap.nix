@@ -1,4 +1,11 @@
+{ swapspace, ... }:
 {
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = swapspace * 1024;
+    }
+  ];
   boot.kernelParams = [
     "zswap.enabled=1"
     "zswap.compressor=zstd"

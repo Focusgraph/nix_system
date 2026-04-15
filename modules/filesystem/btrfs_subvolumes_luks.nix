@@ -8,19 +8,16 @@
       spec = "/";
       hashTableSizeMB = 512;
       verbosity = "info";
-      extraOptions = [ "--loadavg-target" "5.0" ];
+      extraOptions = [
+        "--loadavg-target"
+        "5.0"
+      ];
     };
   };
   fileSystems."/" = {
     options = [ "compress=zstd" ];
     neededForBoot = true;
   };
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 16 * 1024;
-    }
-  ];
   disko.devices = {
     disk = {
       main = {
