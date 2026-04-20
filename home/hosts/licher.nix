@@ -3,6 +3,5 @@
   imports = [
     ../core
     ../tui
-    ../browsers/firefox.nix
   ];
 }
