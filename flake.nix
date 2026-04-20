@@ -59,12 +59,14 @@
             username = "nixy";
             hostname = "vega";
             swapspace = 8;
+            systemdisk = "/dev/nvme0n1";
             specialArgs = {
               inherit
                 inputs
                 username
                 hostname
                 swapspace
+                systemdisk
                 ;
             };
           in
@@ -93,6 +95,7 @@
             username = "nixy";
             hostname = "licher";
             swapspace = 8;
+            systemdisk = "";
             virtual_display = "amdgpu.virtual_display=0000:0c:00.0,1";
             interface = "enp9s0";
             specialArgs = {
@@ -101,6 +104,7 @@
                 username
                 hostname
                 swapspace
+                systemdisk
                 virtual_display
                 interface
                 ;

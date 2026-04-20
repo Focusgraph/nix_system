@@ -1,3 +1,4 @@
+{ systemdisk, ... }:
 {
   services = {
     btrfs.autoScrub = {
@@ -22,7 +23,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/nvme0n1";
+        device = systemdisk;
         content = {
           type = "gpt";
           partitions = {

@@ -11,7 +11,7 @@
     };
     nameservers = [
       "194.242.2.3" # Mullvad
-      # "1.1.1.1" # Cloudflare
+      "1.1.1.1" # Cloudflare
     ];
   };
 }
