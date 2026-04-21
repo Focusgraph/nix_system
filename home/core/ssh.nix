@@ -5,7 +5,7 @@
     enableDefaultConfig = false;
     matchBlocks = {
       "licher" = {
-        hostname = "100.70.166.15";
+        hostname = "100.75.222.43";
         user = "nixy";
       };
       "codeberg.org" = {
