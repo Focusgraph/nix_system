@@ -3,7 +3,7 @@
   services = {
     btrfs.autoScrub = {
       enable = true;
-      fileSystems = [ "/" ];
+      # fileSystems = [ "/" ];
     };
     beesd.filesystems.root = {
       spec = "/";

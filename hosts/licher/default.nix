@@ -11,4 +11,18 @@
     ../../modules/tailscale.nix
     ../../modules/wakeonlan.nix
   ];
+  fileSystems."/storage" = {
+    device = "/dev/md127";
+    fsType = "btrfs";
+    mountPoint = "/storage";
+    options = [ "compress=zstd" ];
+  };
+  services.beesd.filesystems.storage = {
+    spec = "/storage";
+    hashTableSizeMB = 512;
+    extraOptions = [
+      "--loadavg-target"
+      "5.0"
+    ];
+  };
 }
