@@ -2,6 +2,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    agenix.url = "github:ryantm/agenix";
+    arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     impermanence = {
       url = "github:nix-community/impermanence";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,32 +28,20 @@
       url = "github:noctalia-dev/noctalia-shell/v4.7.6";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    # zen-browser = {
-    #   url = "github:youwen5/zen-browser-flake";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    # sops-nix = {
-    #   url = "github:Mic92/sops-nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    agenix.url = "github:ryantm/agenix";
-    arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
   };
   outputs =
     inputs@{
-      self,
-      nixpkgs,
-      nixpkgs-unstable,
-      impermanence,
-      disko,
       nix-index-database,
+      nixpkgs-unstable,
       home-manager,
-      niri,
-      noctalia,
-      # zen-browser,
-      # sops-nix,
-      agenix,
+      impermanence,
       arkenfox,
+      noctalia,
+      nixpkgs,
+      agenix,
+      disko,
+      niri,
+      self,
       ...
     }:
     {
@@ -79,7 +69,6 @@
               ./hosts/vega
               disko.nixosModules.disko
               nix-index-database.nixosModules.default
-              # sops-nix.nixosModules.default
               agenix.nixosModules.default
               niri.nixosModules.niri
               home-manager.nixosModules.home-manager
@@ -121,7 +110,6 @@
             system = "x86_64-linux";
             modules = [
               ./hosts/licher
-              # sops-nix.nixosModules.default
               disko.nixosModules.disko
               home-manager.nixosModules.home-manager
               {

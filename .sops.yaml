@@ -1,9 +1,0 @@
-keys:
-  - &admin_vega age16g2rfkqayvdtqrdzeak4ju7hkjydf0n2ajel69t33ztn9uch3djsz334pt 
-  - &server_licher age1clc00ve8zsvz3ecucy5t0zyh4zvdfgtu2j9xmeyzeyzjm79zec0qlf2990
-creation_rules:
-  - path_regex: secrets/secrets.(yaml|json)
-    key_groups:
-    - age:
-      - *admin_vega
-      - *server_licher

@@ -1,7 +1,10 @@
 {
   programs.librewolf = {
     enable = true;
-    languagePacks = [ "en-GB" "es-ES" ];
+    languagePacks = [
+      "en-GB"
+      "es-ES"
+    ];
     policies = {
       AutofillAddressEnabled = false;
       AutofillCreditCardEnabled = false;
@@ -22,7 +25,7 @@
       PictureInPictureEnabled = false;
       SanitizeOnShutdown = {
         Cookies = false;
-        SiteSettings = false;        
+        SiteSettings = false;
       };
     };
     profiles.default = {
@@ -32,20 +35,29 @@
         engines = {
           nix-packages = {
             name = "Nix Packages";
-            urls = [{ template = "https://search.nixos.org/packages?query={searchTerms}"; }];
+            urls = [ { template = "https://search.nixos.org/packages?query={searchTerms}"; } ];
           };
           nixos-wiki = {
             name = "NixOS Wiki";
-            urls = [{ template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; }];
+            urls = [ { template = "https://wiki.nixos.org/w/index.php?search={searchTerms}"; } ];
           };
         };
       };
       bookmarks.force = true;
       bookmarks.settings = [
-        { name = "Redlib"; url = "https://redlib.sole-alkaid.ts.net"; }
-        { name = "NixOS Discourse"; url = "https://discourse.nixos.org"; }
-        { name = "NixOS Search"; url = "https://search.nixos.org"; }
-      ];     
+        {
+          name = "Redlib";
+          url = "https://redlib.sole-alkaid.ts.net";
+        }
+        {
+          name = "NixOS Discourse";
+          url = "https://discourse.nixos.org";
+        }
+        {
+          name = "NixOS Search";
+          url = "https://search.nixos.org";
+        }
+      ];
       settings = {
         "browser.startup.page" = 3;
         "browser.startup.homepage" = "https://glance.sole-alkaid.ts.net";
@@ -65,7 +77,6 @@
       "keyword.enabled" = true;
       "browser.urlbar.suggest.searches" = false;
       "browser.fixup.alternate.enabled" = false;
-      # "media.autoplay.blocking_policy" = 2;
       "gfx.webrender.all" = true;
     };
   };

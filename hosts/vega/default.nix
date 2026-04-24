@@ -10,7 +10,6 @@
     ../../modules/wireless.nix
     ../../modules/laptop.nix
     ../../modules/tailscale.nix
-    # ../../modules/sops.nix
     ../../modules/gaming/factorio_login.nix
     ../../modules/gaming/steam.nix
   ];

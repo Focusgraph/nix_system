@@ -1,5 +1,5 @@
 {
-  # networking.networkmanager.wifi.powersave = true;
+  networking.networkmanager.wifi.powersave = true;
   powerManagement.powertop.enable = true;
   services = {
     upower.enable = true; # Battery report
