@@ -30,10 +30,11 @@
     #   url = "github:youwen5/zen-browser-flake";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # sops-nix = {
+    #   url = "github:Mic92/sops-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    agenix.url = "github:ryantm/agenix";
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
   };
   outputs =
@@ -48,7 +49,8 @@
       niri,
       noctalia,
       # zen-browser,
-      sops-nix,
+      # sops-nix,
+      agenix,
       arkenfox,
       ...
     }:
@@ -77,7 +79,8 @@
               ./hosts/vega
               disko.nixosModules.disko
               nix-index-database.nixosModules.default
-              sops-nix.nixosModules.default
+              # sops-nix.nixosModules.default
+              agenix.nixosModules.default
               niri.nixosModules.niri
               home-manager.nixosModules.home-manager
               {
@@ -87,6 +90,7 @@
                 home-manager.extraSpecialArgs = { inherit inputs; };
                 home-manager.backupFileExtension = "bkp";
                 nixpkgs.overlays = [ niri.overlays.niri ];
+                age.identityPaths = [ "/home/${username}/.ssh/key" ];
               }
             ];
           };
@@ -117,7 +121,7 @@
             system = "x86_64-linux";
             modules = [
               ./hosts/licher
-              sops-nix.nixosModules.default
+              # sops-nix.nixosModules.default
               disko.nixosModules.disko
               home-manager.nixosModules.home-manager
               {

@@ -4,6 +4,7 @@
 }:
 {
   imports = [
+    ./age.nix
     ./bash.nix
     ./eza.nix
     ./git.nix
