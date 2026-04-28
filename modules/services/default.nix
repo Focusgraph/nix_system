@@ -4,5 +4,6 @@
     ./openssh.nix
     ./redlib.nix
     ./actual.nix
+    # ./llama-cpp.nix
   ];
 }

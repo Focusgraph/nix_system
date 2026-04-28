@@ -4,6 +4,7 @@
     agenix.url = "github:ryantm/agenix";
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     direnv-instant.url = "github:Mic92/direnv-instant";
+    llama-cpp.url = "github:ggml-org/llama.cpp/b8964";
     impermanence = {
       url = "github:nix-community/impermanence";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,6 +36,7 @@
       direnv-instant,
       home-manager,
       impermanence,
+      llama-cpp,
       arkenfox,
       noctalia,
       nixpkgs,
