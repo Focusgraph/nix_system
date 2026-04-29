@@ -4,7 +4,6 @@
     agenix.url = "github:ryantm/agenix";
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     direnv-instant.url = "github:Mic92/direnv-instant";
-    hermes-agent.url = "github:NousResearch/hermes-agent";
     impermanence = {
       url = "github:nix-community/impermanence";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,7 +33,6 @@
     inputs@{
       nix-index-database,
       direnv-instant,
-      hermes-agent,
       home-manager,
       impermanence,
       arkenfox,
