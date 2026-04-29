@@ -37,7 +37,6 @@
       hermes-agent,
       home-manager,
       impermanence,
-      llama-cpp,
       arkenfox,
       noctalia,
       nixpkgs,
