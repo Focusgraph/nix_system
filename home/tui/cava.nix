@@ -6,7 +6,7 @@
       general = {
         framerate = 120;
         autosens = 1;
-        bars = 0; #auto
+        bars = 0; # auto
         bar_width = 1;
         bar_spacing = 1;
         sleep_timer = 5;

@@ -14,7 +14,7 @@
       "/var/lib/bluetooth"
     ];
     files = [
-      "/etc/machine-id"  
+      "/etc/machine-id"
       "/etc/NetworkManager/system-connections"
     ];
   };

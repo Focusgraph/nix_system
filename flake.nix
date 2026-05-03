@@ -70,7 +70,7 @@
               git-conventional-commits
               nil
               nixd
-              nixfmt
+              nixfmt-tree
               pre-commit
             ];
           };
