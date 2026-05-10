@@ -8,6 +8,7 @@
     ../../modules/filesystem/btrfs_subvolumes.nix
     ../../modules/filesystem/swraid.nix
     ../../modules/services
+    ../../modules/services/immich.nix
     ../../modules/tailscale.nix
     ../../modules/wakeonlan.nix
   ];
