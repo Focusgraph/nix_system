@@ -7,8 +7,11 @@
     ../../modules/filesystem
     ../../modules/filesystem/btrfs_subvolumes.nix
     ../../modules/filesystem/swraid.nix
-    ../../modules/services
+    ../../modules/services/openssh.nix
     ../../modules/services/immich.nix
+    ../../modules/services/redlib.nix
+    ../../modules/services/actual.nix
+    ../../modules/services/navidrome.nix
     ../../modules/tailscale.nix
     ../../modules/wakeonlan.nix
   ];
