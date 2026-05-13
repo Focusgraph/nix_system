@@ -25,6 +25,7 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    millennium.url = "github:SteamClientHomebrew/Millennium/e2c66a2?dir=packages/nix";
 
     # System Tools
     nix-index-database = {
