@@ -18,7 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/v4.7.6";
+      url = "github:noctalia-dev/noctalia-shell/v4.7.7";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {
@@ -68,7 +68,9 @@
           with pkgs;
           mkShell {
             packages = [
+              cachix
               git-conventional-commits
+              jq
               nil
               nixd
               nixfmt-tree
