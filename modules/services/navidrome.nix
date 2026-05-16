@@ -7,7 +7,7 @@
 
       EnableInsightsCollector = true;
 
-      Backup.Path = "${serverdirectory}/Backups/Navidrome";
+      Backup.Path = "${serverdirectory}/Backups/licher/Navidrome";
       Backup.Schedule = "0 0 * * *";
       Backup.Count = 7;
     };
